@@ -763,7 +763,8 @@ def make_supervisor_node(
                         name=deliverablesManager,
                     ),
                     HumanMessage(
-                        content=f"次のワーカーへ指示を行ってください。ワーカ名:{goto}",
+                        # 次のワーカーへ指示を行ってください。ワーカ名:{goto}
+                        content=f"Please give the following instructions to the worker. Worker name: {goto}",
                         name="supervisor",
                     ),
                 ]
