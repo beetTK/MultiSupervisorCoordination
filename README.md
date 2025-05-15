@@ -53,3 +53,65 @@
 5.  **問い合わせ対応:** 命令内容に不明な点や達成が困難な点がある場合、各スーパーバイザーは理由を明記した上で、命令元のスーパーバイザーへ問い合わせを行います。
 
 ## ライセンス
+
+
+
+
+
+# Supervisor Collaboration System
+
+## Overview
+
+This system automates the process by which a main supervisor, upon receiving a video creation request, collaborates with other supervisors to execute tasks. Multiple supervisors repeatedly perform routing and generate instructions for their commandable members to accomplish a single directive, thereby efficiently distributing and executing tasks.
+
+To ensure smooth collaboration, if any supervisor encounters unclear instructions or difficulties in achieving a directive, they will inquire with the originating supervisor, clearly stating the reason for the query.
+
+## Supported Environments
+
+* **Python:** 3.9, 3.10, 3.11, 3.12, 3.13
+
+## Environment Variables
+
+To run this system, you need to set the following environment variables:
+
+* `CustomSearchAPIAPIKEY`: API key for Google Custom Search API
+* `SEARCH_ENGINE_ID`: Search engine ID for Google Custom Search
+* `regionName_TOKYO`: (e.g., `AWS_REGION_TOKYO`) AWS region name to be used with boto3 (Tokyo region)
+* `regionName_US`: (e.g., `AWS_REGION_US_EAST_1`) AWS region name to be used with boto3 (US region)
+
+**About boto3 Configuration:**
+
+This system utilizes the AWS SDK for Python (boto3) to interact with AWS services. Ensure that the environment variables `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `regionName_TOKYO`, and `regionName_US` are configured correctly. These credentials should be provided through an AWS IAM user or an instance profile.
+
+## Usage (Preparation)
+
+1.  **Install Python:** Verify that a supported Python version (3.9 to 3.13) is installed.
+2.  **Set Environment Variables:** Set the necessary environment variables in your system.
+    ```bash
+    export CustomSearchAPIAPIKEY="YOUR_CUSTOM_SEARCH_API_KEY"
+    export SEARCH_ENGINE_ID="YOUR_SEARCH_ENGINE_ID"
+    export regionName_TOKYO="ap-northeast-1" # Example: Tokyo region
+    export regionName_US="us-east-1"       # Example: US East region
+    # Configure boto3 credentials if necessary
+    # export AWS_ACCESS_KEY_ID="YOUR_AWS_ACCESS_KEY_ID"
+    # export AWS_SECRET_ACCESS_KEY="YOUR_AWS_SECRET_ACCESS_KEY"
+    ```
+3.  **Install Required Libraries:** If a `requirements.txt` file exists listing the dependencies, install them. Specifically, boto3 is required.
+    ```bash
+    pip install -r requirements.txt # Example
+    # Or
+    pip install boto3
+    ```
+4.  **Configure AWS:** Ensure that the necessary AWS credentials for boto3 are correctly configured.
+
+## System Overview (Collaboration Flow)
+
+1.  **Receiving Video Creation Request:** The main supervisor receives a request for video creation.
+2.  **Task Division and Routing:** The main supervisor divides the request into tasks and routes each task to other responsible supervisors.
+3.  **Instruction Generation and Execution:** Each supervisor generates specific instructions for their commandable members to execute the assigned task. This process is repeated until a single directive is accomplished.
+4.  **Result Reporting:** Once a directive is deemed complete, each supervisor reports the result to the main supervisor.
+5.  **Inquiry Handling:** If a supervisor has unclear instructions or faces difficulties in achieving a directive, they will inquire with the originating supervisor, clearly stating the reason.
+
+## License
+
+[Insert license information here. Example: MIT License]
